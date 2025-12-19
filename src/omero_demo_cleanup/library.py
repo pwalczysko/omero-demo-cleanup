@@ -333,9 +333,8 @@ def resource_usage(
                 if who.first == user_id:
                     file_size += usage
         except Exception as ex:
-            print(
-                f'FAILED to count data for "{user_name}" (#{user_id}), error message is {ex}.'
-            )
+            logging.error("Critical error in process!", exc_info=True) # Logs traceback
+
 
         if file_count > 0 or file_size > 0:
             user_stats.append(
